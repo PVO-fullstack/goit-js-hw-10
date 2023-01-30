@@ -14,6 +14,8 @@ inputEl.addEventListener('input', debounce(onInput, DEBOUNCE_DELAY));
 function onInput(e) {
   let countryName = e.target.value;
   const name = countryName.trim()
+  countryList.innerHTML = "";
+  countryInfo.innerHTML = "";
   if (name) {
     fetchCountries(name)
       .then(countrys => {
@@ -29,10 +31,7 @@ function error(country) {
     Notify.failure('Oops, there is no country with that name');
   }
 }
-
 function countryListMake(countrys) {
-  countryList.innerHTML = "";
-  countryInfo.innerHTML = "";
   if (countrys.length > 10) {
     Notify.info('Too many matches found. Please enter a more specific name.')
   }
